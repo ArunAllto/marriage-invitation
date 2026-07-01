@@ -1,0 +1,31 @@
+/* Site-level overrides for the local meenaya-2 copy. */
+
+/* Remove the footer (Section 7 — contact / links / copyright block).
+   display:none in the <head> applies before first paint, so there is no flash,
+   and it survives Framer's client re-render because the data-framer-name
+   attributes stay on the elements. */
+[data-framer-name="Section 7"],
+[data-framer-name="Main Footer"] {
+  display: none !important;
+}
+
+/* Remove the events we don't use — Haldi (Card 2), Sangeet (Card 3),
+   Engagement (Card 4) — leaving Mehendi, Muhurtham, Reception. Hidden by their
+   stable Framer container classes so it survives the client re-render. */
+.framer-1ugevy1-container,   /* Haldi */
+.framer-xafffh-container,    /* Sangeet */
+.framer-1vtu882-container {  /* Engagement */
+  display: none !important;
+}
+
+/* Temple gopuram placed in FRONT of the big invite names (added by
+   js/temple-overlay.js), so the names sit behind it. Soft bottom fade blends
+   the cut base into the page. */
+#temple-front {
+  position: absolute;
+  z-index: 40;                /* above the names (z-index 5) */
+  pointer-events: none;
+  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.25));
+  -webkit-mask-image: linear-gradient(to bottom, #000 84%, transparent 100%);
+          mask-image: linear-gradient(to bottom, #000 84%, transparent 100%);
+}
